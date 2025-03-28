@@ -45,10 +45,10 @@ const About = () => {
             
             <div className={`${inter.className} space-y-4 text-gray-300`}>
               <p>
-                Team Green's Bliss Initiative is dedicated to transforming education and empowering students throughout their academic journey. We believe in creating an environment where every student can thrive and reach their full potential.
+                Team Green Bliss Initiative is dedicated to transforming education and empowering students throughout their academic journey. We believe in creating an environment where every student can thrive and reach their full potential.
               </p>
               <p>
-                Our mission extends beyond traditional education, encompassing holistic development, personal growth, and community building. Through innovative programs and dedicated support, we're helping shape the future of education.
+                Our mission extends beyond traditional education, encompassing holistic development, personal growth, and community building. Through innovative programs and dedicated support, we are helping shape the future of education.
               </p>
               
               <div className="grid grid-cols-3 gap-4 my-8">
