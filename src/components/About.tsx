@@ -10,12 +10,10 @@ const dancing_Script = Dancing_Script({ subsets: ['latin'], weight: ['400', '500
 const About = () => {
   return (
     <section className="relative py-20 bg-[#0A192F] overflow-hidden">
-      {/* Background Gradient Effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0A192F] via-[#112240] to-[#0A192F] opacity-80" />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          {/* Image Section */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -29,12 +27,10 @@ const About = () => {
                 fill
                 className="object-cover"
               />
-              {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-transparent to-transparent opacity-40" />
             </div>
           </motion.div>
 
-          {/* Content Section */}
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -55,7 +51,6 @@ const About = () => {
                 Our mission extends beyond traditional education, encompassing holistic development, personal growth, and community building. Through innovative programs and dedicated support, we're helping shape the future of education.
               </p>
               
-              {/* Stats Section */}
               <div className="grid grid-cols-3 gap-4 my-8">
                 {[
                   { number: "5+", label: "Years Experience" },
@@ -78,7 +73,6 @@ const About = () => {
               </div>
             </div>
 
-            {/* Read More Button */}
             <motion.button
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -6,13 +6,10 @@ import { FaFacebookF, FaLinkedinIn, FaYoutube, FaInstagram, FaTwitter, FaPhone, 
 const Footer = () => {
   return (
     <footer className="bg-[#006064] text-white">
-      {/* Top Border Line */}
       <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-50"></div>
       
-      {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* About Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Image
@@ -28,7 +25,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold text-[#F8F7BE] mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -44,8 +40,6 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
-          {/* Contact Info */}
           <div>
             <h3 className="text-lg font-semibold text-[#F8F7BE] mb-4">Contact Us</h3>
             <ul className="space-y-3">
@@ -63,8 +57,6 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-
-          {/* Social Media */}
           <div>
             <h3 className="text-lg font-semibold text-[#F8F7BE] mb-4">Follow Us</h3>
             <div className="flex space-x-4">
@@ -89,7 +81,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="border-t border-[#009688]/30 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-[#E0F2F1] text-sm">
