@@ -3,19 +3,122 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bliss-yellow: 236, 252, 203;
+  --bliss-green: 162, 230, 190;
+  --bliss-turquoise: 95, 212, 196;
+  --bliss-blue: 75, 192, 200;
+  --text-dark: 22, 78, 99;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(22, 78, 99, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    to bottom,
+    rgba(22, 78, 99, 0.6),
+    rgba(75, 192, 200, 0.6)
+  );
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(22, 78, 99, 0.8),
+    rgba(75, 192, 200, 0.8)
+  );
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(22, 78, 99, 0.6) rgba(22, 78, 99, 0.1);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--text-dark));
+  background: linear-gradient(
+    135deg,
+    rgb(var(--bliss-yellow)),
+    rgb(var(--bliss-green)) 50%,
+    rgb(var(--bliss-turquoise)) 75%,
+    rgb(var(--bliss-blue))
+  );
+  min-height: 100vh;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #9be15d, #00e3ae, #00c4cc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Custom button styles */
+.btn-primary {
+  @apply px-8 py-3 rounded-full text-lg transition-all duration-300;
+  background: linear-gradient(135deg, #9be15d, #00e3ae, #00c4cc);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 227, 174, 0.3);
+}
+
+/* Section transitions */
+section {
+  @apply transition-all duration-300;
+}
+
+/* Card hover effects */
+.hover-card {
+  @apply transition-all duration-300;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 227, 174, 0.2);
+  background: rgba(255, 255, 255, 0.9);
 }
