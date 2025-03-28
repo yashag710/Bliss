@@ -2,8 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Poppins } from 'next/font/google';
-import { FloatingNav } from "./ui/floating-navbar";
-import { FaFacebookF, FaLinkedinIn, FaYoutube, FaInstagram, FaTwitter, FaFacebook, FaLinkedin } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '600', '700'] });
 const Navbar: React.FC = () => {
   return (
