@@ -10,7 +10,7 @@ const dancing_Script = Dancing_Script({ subsets: ['latin'], weight: ['400', '500
 const About = () => {
   return (
     <section className="relative py-20 bg-[#133043] overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0A192F] via-[#112240] to-[#0A192F] opacity-80" />
+      <div className="absolute inset-0 opacity-80" />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-12">
