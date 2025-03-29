@@ -29,7 +29,7 @@ const slides = [
 ];
 const Front: React.FC = () => {
   return (
-    <div className="relative w-full h-[550px]">
+    <div className="relative w-full h-[80vh]">
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}

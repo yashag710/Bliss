@@ -7,7 +7,7 @@ const poppins = Poppins({ subsets: ['latin'], weight: ['400', '600', '700'] });
 const Navbar: React.FC = () => {
   return (
     <div className="z-10">
-      <nav className="bg-[#009688] text-white h-24 flex flex-row justify-center items-center">
+      <nav className="bg-[#133043] text-white h-24 flex flex-row justify-center items-center">
         <div className="container mx-auto flex items-center justify-between py-3 px-4">
           {/* Logo Section */}
           <div className="flex items-center ml-4 space-x-2">
