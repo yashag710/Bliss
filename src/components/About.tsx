@@ -22,7 +22,7 @@ const About = () => {
           >
             <div className="relative h-[500px] w-full rounded-2xl overflow-hidden">
               <Image
-                src="/images/about-image.jpg"
+                src="/images/about.jpg"
                 alt="Students learning"
                 fill
                 className="object-cover"
