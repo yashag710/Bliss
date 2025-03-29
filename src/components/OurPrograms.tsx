@@ -7,37 +7,37 @@ const programsContent = [
       title: 'Child Counseling Services',
       description:
         'Our experienced counselors provide a safe and nurturing environment for children to express themselves. Through play therapy, art therapy, and individual counseling sessions, we help children develop emotional resilience and coping mechanisms.',
-      image: '/images/child-counseling.jpg'
+      image: '/images/yoga_man.webp'
     },
     {
       title: 'Environmental Education',
       description:
         'We integrate environmental awareness into our counseling programs. Children learn about sustainability, climate change, and their role in protecting the planet through interactive workshops and nature-based activities.',
-      image: '/images/environmental-ed.jpg'
+      image: '/images/yoga_man.webp'
     },
     {
       title: 'Nature Therapy Programs',
       description:
         'Experience the healing power of nature through our outdoor therapy sessions. Children connect with the environment while developing emotional well-being through guided nature walks and eco-friendly activities.',
-      image: '/images/nature-therapy.jpg'
+      image: '/images/yoga_woman.webp'
     },
     {
       title: 'Community Green Initiatives',
       description:
         'Join our community-driven environmental projects. From tree planting to waste management workshops, we empower children to become environmental stewards while building strong community bonds.',
-      image: '/images/community-green.jpg'
+      image: '/images/yoga_woman.webp'
     },
     {
       title: 'Parent-Child Bonding',
       description:
         'Strengthen family relationships through our eco-conscious family activities. Parents and children work together on environmental projects while learning effective communication and emotional support.',
-      image: '/images/family-bonding.jpg'
+      image: '/images/yoga_man.webp'
     },
     {
       title: 'Sustainable Development',
       description:
         'Learn about sustainable practices through hands-on projects. Children develop critical thinking skills while understanding the importance of environmental conservation and sustainable living.',
-      image: '/images/sustainable-dev.jpg'
+      image: '/images/yoga_woman.webp'
     },
   ];
 
