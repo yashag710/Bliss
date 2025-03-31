@@ -52,25 +52,48 @@ const About = () => {
                 Our mission extends beyond traditional education, encompassing holistic development, personal growth, and community building. Through innovative programs and dedicated support, we are helping shape the future of education.
               </p>
               
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 my-6 sm:my-8">
-                {[
-                  { number: "5+", label: "Years Experience" },
-                  { number: "1000+", label: "Students Helped" },
-                  { number: "50+", label: "Partner Schools" }
-                ].map((stat, index) => (
+              <div className="flex flex-col sm:grid sm:grid-cols-3 gap-4 sm:gap-6 my-6 sm:my-8">
+                {/* First stat - centered on mobile */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="text-center sm:col-span-1"
+                >
+                  <div className={`text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecfccb] to-[#5fd4c4] ${ubuntu.className}`}>
+                    5+
+                  </div>
+                  <div className={`text-xs sm:text-sm text-gray-400 ${nunito.className}`}>Years Experience</div>
+                </motion.div>
+
+                {/* Container for the other two stats */}
+                <div className="flex justify-center gap-4 sm:col-span-2">
+                  {/* Second stat */}
                   <motion.div
-                    key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
                     className="text-center"
                   >
                     <div className={`text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecfccb] to-[#5fd4c4] ${ubuntu.className}`}>
-                      {stat.number}
+                      1000+
                     </div>
-                    <div className={`text-xs sm:text-sm text-gray-400 ${nunito.className}`}>{stat.label}</div>
+                    <div className={`text-xs sm:text-sm text-gray-400 ${nunito.className}`}>Students Helped</div>
                   </motion.div>
-                ))}
+
+                  {/* Third stat */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                    className="text-center"
+                  >
+                    <div className={`text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecfccb] to-[#5fd4c4] ${ubuntu.className}`}>
+                      50+
+                    </div>
+                    <div className={`text-xs sm:text-sm text-gray-400 ${nunito.className}`}>Partner Schools</div>
+                  </motion.div>
+                </div>
               </div>
             </div>
             
