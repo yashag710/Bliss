@@ -2,8 +2,11 @@
 import React, { useRef } from "react";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
-import { cn } from "@/Utils/cn";
 import Image from "next/image";
+import { Ubuntu, Nunito } from "next/font/google";
+
+const ubuntu = Ubuntu({ subsets: ['latin'], weight: ['400', '500', '700'] });
+const nunito = Nunito({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
 
 export const StickyScroll = ({
   content,
@@ -23,17 +26,28 @@ export const StickyScroll = ({
   const cardLength = content.length;
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const cardsBreakpoints = content.map((_, index) => index / cardLength);
-    cardsBreakpoints.forEach((breakpoint, index) => {
-      if (latest > breakpoint - 0.2 && latest <= breakpoint) {
-        setActiveCard(() => index);
-      }
+    // Calculate breakpoints for each card
+    const cardsBreakpoints = content.map((_, index) => {
+      // Start from 0 and increment by 1/cardLength
+      return index / (cardLength - 1);
     });
+
+    // Find the active card based on scroll position
+    for (let i = 0; i < cardsBreakpoints.length; i++) {
+      if (latest <= cardsBreakpoints[i]) {
+        setActiveCard(i);
+        break;
+      }
+      // If we're at the last card and past its breakpoint
+      if (i === cardsBreakpoints.length - 1) {
+        setActiveCard(i);
+      }
+    }
   });
 
   return (
     <motion.div
-      className="h-[40rem] overflow-y-auto flex justify-center relative space-x-10 rounded-xl p-10 bg-[#006064]/20 backdrop-blur-sm custom-scrollbar border border-[#E0F2F1]/20"
+      className="h-[40rem] overflow-y-auto flex justify-center relative space-x-10 rounded-xl p-10 bg-[#0e5457]/20 backdrop-blur-sm custom-scrollbar border border-[#E0F2F1]/20"
       ref={ref}
       style={{
         scrollbarWidth: 'thin',
@@ -75,7 +89,7 @@ export const StickyScroll = ({
                   duration: 0.5,
                   ease: "easeInOut",
                 }}
-                className="text-3xl font-bold text-white drop-shadow-md"
+                className={`text-3xl font-bold text-white drop-shadow-md ${ubuntu.className}`}
               >
                 {item.title}
               </motion.h2>
@@ -90,7 +104,7 @@ export const StickyScroll = ({
                   duration: 0.5,
                   ease: "easeInOut",
                 }}
-                className="text-lg text-[#E0F2F1] max-w-xl mt-8 leading-relaxed font-medium"
+                className={`text-lg text-[#E0F2F1] max-w-xl mt-8 leading-relaxed font-medium ${nunito.className}`}
               >
                 {item.description}
               </motion.p>
@@ -100,7 +114,7 @@ export const StickyScroll = ({
         </div>
       </div>
       <motion.div
-        className="hidden lg:block h-[32rem] w-96 rounded-xl bg-[#006064]/10 sticky top-10 overflow-hidden border border-[#E0F2F1]/20 shadow-2xl"
+        className="hidden lg:block h-[32rem] w-96 rounded-xl bg-[#0e5457]/10 sticky top-10 overflow-hidden border border-[#E0F2F1]/20 shadow-2xl"
         initial={{ opacity: 0 }}
         animate={{
           opacity: 1,

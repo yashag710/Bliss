@@ -1,26 +1,27 @@
 "use client";
 import Image from "next/image";
-import { Ubuntu, Inter, Dancing_Script } from "next/font/google";
+import { Ubuntu, Nunito, Dancing_Script } from "next/font/google";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const ubuntu = Ubuntu({ subsets: ['latin'], weight: ['400', '500', '700'] });
-const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '700'] });
+const nunito = Nunito({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
 const dancing_Script = Dancing_Script({ subsets: ['latin'], weight: ['400', '500', '700']});
 
 const About = () => {
   return (
-    <section className="relative py-20 bg-[#133043] overflow-hidden">
+    <section className="relative py-12 sm:py-20 bg-[#133043] overflow-hidden">
       <div className="absolute inset-0 opacity-80" />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-12">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:w-1/2"
+            className="lg:w-1/2 w-full"
           >
-            <div className="relative h-[500px] w-full rounded-2xl overflow-hidden">
+            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden">
               <Image
                 src="/images/about.jpg"
                 alt="Students learning"
@@ -35,15 +36,15 @@ const About = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="lg:w-1/2 text-white"
+            className="lg:w-1/2 w-full text-white"
           >
-            <h2 className={`${ubuntu.className} text-4xl font-bold mb-6`}>
+            <h2 className={`${ubuntu.className} text-3xl sm:text-4xl font-bold mb-4 sm:mb-6`}>
               <span className="text-white">
                 About Us
               </span>
             </h2>
             
-            <div className={`${inter.className} space-y-4 text-gray-300`}>
+            <div className={`${nunito.className} space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base`}>
               <p>
                 Team Green Bliss Initiative is dedicated to transforming education and empowering students throughout their academic journey. We believe in creating an environment where every student can thrive and reach their full potential.
               </p>
@@ -51,7 +52,7 @@ const About = () => {
                 Our mission extends beyond traditional education, encompassing holistic development, personal growth, and community building. Through innovative programs and dedicated support, we are helping shape the future of education.
               </p>
               
-              <div className="grid grid-cols-3 gap-4 my-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 my-6 sm:my-8">
                 {[
                   { number: "5+", label: "Years Experience" },
                   { number: "1000+", label: "Students Helped" },
@@ -64,23 +65,25 @@ const About = () => {
                     transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                     className="text-center"
                   >
-                    <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecfccb] to-[#5fd4c4]">
+                    <div className={`text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ecfccb] to-[#5fd4c4] ${ubuntu.className}`}>
                       {stat.number}
                     </div>
-                    <div className="text-sm text-gray-400">{stat.label}</div>
+                    <div className={`text-xs sm:text-sm text-gray-400 ${nunito.className}`}>{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
             </div>
-
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className={`${dancing_Script.className} mt-8 text-3xl text-[#5fd4c4] hover:text-[#ecfccb] transition-colors duration-300`}
-            >
-              Read more
-            </motion.button>
+            
+            <Link href="/about">
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className={`${dancing_Script.className} mt-6 sm:mt-8 text-2xl sm:text-3xl text-[#5fd4c4] hover:text-[#ecfccb] transition-colors duration-300`}
+              >
+                Read more
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </div>
