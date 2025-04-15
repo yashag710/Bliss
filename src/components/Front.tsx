@@ -7,11 +7,10 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Ubuntu } from "next/font/google";
 import { Nunito } from "next/font/google";
-import { Dancing_Script } from "next/font/google";
+import { motion } from "framer-motion";
 
 const ubuntu = Ubuntu({ subsets: ['latin'], weight: ['400', '500', '700'] });
 const nunito = Nunito({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
-const dancing_Script = Dancing_Script({ subsets: ['latin'], weight: ['400', '500', '700'] });
 
 const slides = [
   {
@@ -35,10 +34,10 @@ const Front: React.FC = () => {
   return (
     <div className="relative w-full h-[80vh]">
       <Swiper
-        modules={[Autoplay, Pagination, Navigation]} // Add Navigation module
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        modules={[Autoplay, Pagination, Navigation]}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }} // Navigation buttons
+        navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }}
         loop={true}
         className="w-full h-full"
       >
@@ -55,15 +54,33 @@ const Front: React.FC = () => {
             </div>
             <div className="absolute inset-0 bg-black/50 flex items-center">
               <div className="text-white max-w-xl p-4 sm:p-6 ml-4 sm:ml-10">
-                <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400 ${ubuntu.className}`}>
+                <motion.h1 
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className={`text-3xl sm:text-4xl md:text-5xl font-bold text-white ${ubuntu.className}`}
+                >
                   {slide.title}
-                </h1>
-                <p className={`text-base sm:text-lg mt-2 sm:mt-3 ${nunito.className}`}>
+                </motion.h1>
+                <motion.p 
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className={`text-base sm:text-lg mt-2 sm:mt-3 text-white/90 ${nunito.className}`}
+                >
                   {slide.text}
-                </p>
-                <button className={`mt-4 sm:mt-5 py-2 text-[#F8F7BE] text-2xl sm:text-3xl hover:text-yellow-300 transition ${dancing_Script.className}`}>
+                </motion.p>
+                <motion.button 
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className={`mt-4 sm:mt-2 py-2 text-white text-sm sm:text-lg hover:text-white/80 transition ${nunito.className}`}
+                >
                   Read more
-                </button>
+                </motion.button>
               </div>
             </div>
           </SwiperSlide>
@@ -77,17 +94,18 @@ const Front: React.FC = () => {
       {/* Custom styles for pagination and navigation */}
       <style jsx>{`
         :global(.swiper-pagination-bullet) {
-          background-color: #F8F7BE !important; /* Change pagination dots to match theme */
+          background-color: white !important;
           opacity: 0.6;
         }
         :global(.swiper-pagination-bullet-active) {
-          background-color: #FFD700 !important; /* Active dot in yellow */
+          background-color: white !important;
+          opacity: 1;
         }
         :global(.swiper-button-next), :global(.swiper-button-prev) {
-          color: rgba(255, 255, 255, 0.5) !important; /* Light faded arrows */
+          color: rgba(255, 255, 255, 0.5) !important;
         }
         :global(.swiper-button-next:hover), :global(.swiper-button-prev:hover) {
-          color: #F8F7BE !important; /* Brighten on hover */
+          color: white !important;
         }
       `}</style>
     </div>

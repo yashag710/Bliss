@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { FaFacebookF, FaLinkedinIn, FaYoutube, FaInstagram, FaTwitter, FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cantarell } from "next/font/google";
 import { useState } from "react";
@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
-      <nav className="bg-[#0e5457] text-white shadow-lg">
+      <nav className="bg-[#0e5457] text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo Section */}
@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
                 whileHover={{ scale: 1.1, rotate: 2 }}
                 whileTap={{ scale: 0.9, rotate: -2 }}
               >
-                <div className="relative w-12 h-12 sm:w-16 sm:h-16">
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20">
                   <Image
                     src="/images/bliss_logo.png"
                     alt="Logo"
@@ -86,35 +86,6 @@ const Navbar: React.FC = () => {
                 </motion.li>
               ))}
             </ul>
-
-            {/* Desktop Social Media Icons */}
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="hidden md:flex items-center space-x-4"
-            >
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                className="text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300">
-                <FaFacebookF size={18} />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-                className="text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300">
-                <FaLinkedinIn size={18} />
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
-                className="text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300">
-                <FaYoutube size={18} />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-                className="text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300">
-                <FaInstagram size={18} />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"
-                className="text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300">
-                <FaTwitter size={18} />
-              </a>
-            </motion.div>
 
             {/* Mobile Menu Button */}
             <button
@@ -165,37 +136,11 @@ const Navbar: React.FC = () => {
                     </motion.div>
                   ))}
                 </div>
-                {/* Mobile Social Media Icons */}
-                <div className="flex items-center justify-center space-x-6 py-4 border-t border-[#E0F2F1]/10">
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                    className="text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300">
-                    <FaFacebookF size={20} />
-                  </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-                    className="text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300">
-                    <FaLinkedinIn size={20} />
-                  </a>
-                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
-                    className="text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300">
-                    <FaYoutube size={20} />
-                  </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-                    className="text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300">
-                    <FaInstagram size={20} />
-                  </a>
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"
-                    className="text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300">
-                    <FaTwitter size={20} />
-                  </a>
-                </div>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
       </nav>
-
-      {/* Decorative Line */}
-      <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-50"></div>
     </div>
   );
 };

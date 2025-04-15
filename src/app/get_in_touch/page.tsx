@@ -2,8 +2,23 @@
 import React, { useState } from "react";
 import { FaUser, FaEnvelope, FaPhone, FaCalendar, FaGraduationCap, FaLeaf } from "react-icons/fa";
 
-const GetInTouch = () => {
-  const [formData, setFormData] = useState({
+interface FormData {
+  studentName: string;
+  age: string;
+  email: string;
+  phone: string;
+  grade: string;
+  parentName: string;
+  parentPhone: string;
+  concerns: string;
+  preferredTime: string;
+  counselingType: string;
+  environmentalInterest: string;
+  additionalInfo: string;
+}
+
+const GetInTouch: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
     studentName: "",
     age: "",
     email: "",
@@ -29,13 +44,13 @@ const GetInTouch = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,9 +58,7 @@ const GetInTouch = () => {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
-      }
+      if (!response.ok) throw new Error('Failed to submit form');
 
       setSubmitStatus("success");
       setFormData({
@@ -71,8 +84,8 @@ const GetInTouch = () => {
   };
 
   return (
-    <>
-      <div className="h-16 sm:h-20"></div>
+  <>
+    <div className="h-16 sm:h-20"></div>
       <div className="min-h-screen bg-gradient-to-b from-[#0e5457] to-[#006064] py-8 sm:py-16 px-6 sm:px-8">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-6 sm:mb-12">
@@ -308,4 +321,7 @@ const GetInTouch = () => {
   );
 };
 
-export default GetInTouch; 
+export default GetInTouch;
+
+
+
