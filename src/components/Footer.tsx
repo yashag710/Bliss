@@ -11,7 +11,11 @@ const Footer = () => {
   return (
     <footer id="contact" className="bg-[#006064] text-white">
 
-      <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-50"></div>
+      <div className="relative">
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-40"></div>
+        <div className="w-1/3 h-px bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-30 mx-auto -mt-[1px]"></div>
+        <div className="w-1/6 h-px bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-20 mx-auto -mt-[1px]"></div>
+      </div>
 
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 ${nunito.className}` }>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">

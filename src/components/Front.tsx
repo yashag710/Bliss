@@ -1,16 +1,17 @@
 "use client";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Ubuntu } from "next/font/google";
 import { Nunito } from "next/font/google";
+import { Montserrat } from "next/font/google"; // Add this import
 import { motion } from "framer-motion";
 
 const ubuntu = Ubuntu({ subsets: ['latin'], weight: ['400', '500', '700'] });
 const nunito = Nunito({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
+const montserrat = Montserrat({ subsets: ['latin'], weight: ['500', '600'] }); // Add this
 
 const slides = [
   {
@@ -32,14 +33,18 @@ const slides = [
 
 const Front: React.FC = () => {
   return (
-    <div className="relative w-full h-[80vh]">
+    <div className="relative w-full h-screen">
       <Swiper
-        modules={[Autoplay, Pagination, Navigation]}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
-        pagination={{ clickable: true }}
+        modules={[Autoplay, Navigation]}
+        autoplay={{ 
+          delay: 5000, 
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true 
+        }}
         navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }}
         loop={true}
-        className="w-full h-full"
+        speed={1000} // Increased transition speed
+        className="w-full h-screen"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index} className="relative">
@@ -48,36 +53,36 @@ const Front: React.FC = () => {
                 src={slide.image} 
                 alt={slide.title} 
                 fill
-                className="object-cover object-top" 
+                className="object-cover object-top transition-transform duration-700" 
                 priority
               />
             </div>
             <div className="absolute inset-0 bg-black/50 flex items-center">
               <div className="text-white max-w-xl p-4 sm:p-6 ml-4 sm:ml-10">
                 <motion.h1 
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
                   className={`text-3xl sm:text-4xl md:text-5xl font-bold text-white ${ubuntu.className}`}
                 >
                   {slide.title}
                 </motion.h1>
                 <motion.p 
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
+                  transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
                   className={`text-base sm:text-lg mt-2 sm:mt-3 text-white/90 ${nunito.className}`}
                 >
                   {slide.text}
                 </motion.p>
                 <motion.button 
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  className={`mt-4 sm:mt-2 py-2 text-white text-sm sm:text-lg hover:text-white/80 transition ${nunito.className}`}
+                  transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                  className={`mt-6 px-6 py-2 text-white text-sm sm:text-base uppercase tracking-wider border border-white/30 hover:bg-white/10 transition-all duration-300 ${montserrat.className} font-semibold`}
                 >
                   Read more
                 </motion.button>
@@ -87,25 +92,23 @@ const Front: React.FC = () => {
         ))}
 
         {/* Custom Navigation Buttons */}
-        <div className="swiper-button-prev text-white opacity-50 hover:opacity-100 transition-opacity"></div>
-        <div className="swiper-button-next text-white opacity-50 hover:opacity-100 transition-opacity"></div>
+        <div className="swiper-button-prev text-white opacity-40 hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="swiper-button-next text-white opacity-40 hover:opacity-100 transition-opacity duration-300"></div>
       </Swiper>
 
-      {/* Custom styles for pagination and navigation */}
+      {/* Updated gradient overlay */}
+      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black/40 to-transparent pointer-events-none z-10"></div>
+
+      {/* Custom styles for navigation */}
       <style jsx>{`
-        :global(.swiper-pagination-bullet) {
-          background-color: white !important;
-          opacity: 0.6;
-        }
-        :global(.swiper-pagination-bullet-active) {
-          background-color: white !important;
-          opacity: 1;
-        }
         :global(.swiper-button-next), :global(.swiper-button-prev) {
-          color: rgba(255, 255, 255, 0.5) !important;
+          color: rgba(255, 255, 255, 0.9) !important;
+          transform: scale(0.8);
+          transition: all 0.3s ease;
         }
         :global(.swiper-button-next:hover), :global(.swiper-button-prev:hover) {
           color: white !important;
+          transform: scale(0.9);
         }
       `}</style>
     </div>

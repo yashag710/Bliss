@@ -47,23 +47,25 @@ const teamMembers = [
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0e5457] to-[#006064] pt-[80px]">
+    <div className="min-h-screen bg-[#0e5457]">
       {/* Title Section with Background Image */}
-      <div className="relative w-full">
-        <div className="absolute inset-0 h-[300px]">
+      <div className="relative w-full h-[50vh]"> {/* Increased height and removed mt-20 */}
+        <div className="absolute inset-0">
           <Image
-            src="/images/about.jpg"
+            src="/images/about_page.jpg"
             alt="About Us Hero"
             fill
-            className="object-cover brightness-[0.7]"
+            className="object-cover object-center brightness-[0.7]"
             priority
           />
-          {/* Subtle gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0e5457]/30 to-[#0e5457]"></div>
+          {/* Updated gradient overlay with better transparency */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-[#0e5457]/50 to-[#0e5457]"></div>
         </div>
-        <div className="relative max-w-4xl mx-auto px-6 sm:px-8 pt-16 pb-24">
+        <div className="relative max-w-4xl mx-auto px-6 sm:px-8 h-full flex items-center justify-center pt-20"> {/* Added pt-20 instead of mt-20 */}
           <div className="text-center">
-            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold text-[#F8F7BE] mb-4 drop-shadow-lg ${ubuntu.className}`}>Our Story</h2>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold text-[#F8F7BE] mb-4 drop-shadow-lg ${ubuntu.className}`}>
+              Our Story
+            </h2>
             <p className={`text-white/90 text-lg sm:text-xl ${nunito.className}`}>
               A journey of nurturing minds and nature
             </p>
@@ -91,8 +93,12 @@ const AboutUs = () => {
         </motion.div>
       </div>
 
-      {/* Decorative Line */}
-      <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-50"></div>
+      {/* Decorative Lines */}
+      <div className="relative">
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-40"></div>
+        <div className="w-1/3 h-px bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-30 mx-auto -mt-[1px]"></div>
+        <div className="w-1/6 h-px bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-20 mx-auto -mt-[1px]"></div>
+      </div>
 
       {/* Lead Organizer Section */}
       <div className="max-w-4xl mx-auto px-6 sm:px-8 py-12 sm:py-16">
@@ -141,25 +147,31 @@ const AboutUs = () => {
         </motion.div>
       </div>
 
-      {/* Decorative Line */}
-      <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-50"></div>
+      {/* Decorative Lines */}
+      <div className="relative">
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-40"></div>
+        <div className="w-1/3 h-px bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-30 mx-auto -mt-[1px]"></div>
+        <div className="w-1/6 h-px bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-20 mx-auto -mt-[1px]"></div>
+      </div>
 
       {/* Team Members Section */}
-      <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 py-12 sm:py-16">
+      <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 py-16 sm:py-24"> {/* Increased padding */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16" // Increased bottom margin
         >
-          <h2 className={`text-3xl sm:text-4xl font-bold text-[#F8F7BE] mb-2 ${ubuntu.className}`}>Our Team</h2>
+          <h2 className={`text-3xl sm:text-4xl font-bold text-[#F8F7BE] mb-3 ${ubuntu.className}`}>
+            Our Team
+          </h2>
           <p className={`text-xl sm:text-2xl text-white/90 ${nunito.className}`}>
             Meet the dedicated professionals behind our initiative
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 max-w-6xl mx-auto"> {/* Added max-width and increased gap */}
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.name}
@@ -167,9 +179,12 @@ const AboutUs = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-center bg-white/5 backdrop-blur-sm p-4 border border-[#F8F7BE]/20 hover:border-[#F8F7BE]/40 transition-all duration-300 hover:bg-white/10"
+              className="text-center bg-white/5 backdrop-blur-sm p-6 sm:p-8 border border-[#F8F7BE]/20 
+                hover:border-[#F8F7BE]/40 transition-all duration-300 hover:bg-white/10 
+                rounded-lg flex flex-col items-center max-w-sm mx-auto h-full" // Added flex, max-width, and height
             >
-              <div className="relative w-full aspect-square max-w-[180px] mx-auto mb-3 overflow-hidden border-2 border-[#F8F7BE]/20">
+              <div className="relative w-40 h-40 sm:w-44 sm:h-44 mb-6 overflow-hidden 
+                border-2 border-[#F8F7BE]/20 rounded-lg"> {/* Fixed dimensions and added rounded corners */}
                 <Image
                   src={member.image}
                   alt={member.name}
@@ -177,18 +192,37 @@ const AboutUs = () => {
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <h3 className={`text-lg sm:text-xl font-bold text-[#F8F7BE] mb-1 ${ubuntu.className}`}>{member.name}</h3>
-              <p className={`text-base sm:text-lg text-white/90 mb-3 ${nunito.className}`}>{member.role}</p>
-              <p className={`text-[#E0F2F1] text-sm mb-4 ${inter.className}`}>{member.description}</p>
-              <div className="flex justify-center space-x-4">
-                <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#F8F7BE] hover:text-white transition-colors">
-                  <FaLinkedinIn size={20} />
+              <h3 className={`text-xl sm:text-2xl font-bold text-[#F8F7BE] mb-2 ${ubuntu.className}`}>
+                {member.name}
+              </h3>
+              <p className={`text-lg text-white/90 mb-4 ${nunito.className}`}>
+                {member.role}
+              </p>
+              <p className={`text-[#E0F2F1] text-base leading-relaxed mb-6 ${inter.className}`}>
+                {member.description}
+              </p>
+              <div className="mt-auto pt-4 flex justify-center space-x-6"> {/* Added mt-auto to push to bottom */}
+                <a 
+                  href={member.social.linkedin} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#F8F7BE] hover:text-white transition-colors"
+                >
+                  <FaLinkedinIn size={22} />
                 </a>
-                <a href={member.social.twitter} target="_blank" rel="noopener noreferrer" className="text-[#F8F7BE] hover:text-white transition-colors">
-                  <FaTwitter size={20} />
+                <a 
+                  href={member.social.twitter} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#F8F7BE] hover:text-white transition-colors"
+                >
+                  <FaTwitter size={22} />
                 </a>
-                <a href={`mailto:${member.social.email}`} className="text-[#F8F7BE] hover:text-white transition-colors">
-                  <FaEnvelope size={20} />
+                <a 
+                  href={`mailto:${member.social.email}`} 
+                  className="text-[#F8F7BE] hover:text-white transition-colors"
+                >
+                  <FaEnvelope size={22} />
                 </a>
               </div>
             </motion.div>

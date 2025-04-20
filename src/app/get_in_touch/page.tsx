@@ -1,6 +1,12 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { Ubuntu, Nunito } from "next/font/google";
 import { FaUser, FaEnvelope, FaPhone, FaCalendar, FaGraduationCap, FaLeaf } from "react-icons/fa";
+
+const ubuntu = Ubuntu({ subsets: ['latin'], weight: ['400', '500', '700'] });
+const nunito = Nunito({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
 
 interface FormData {
   studentName: string;
@@ -28,8 +34,8 @@ const GetInTouch: React.FC = () => {
     parentPhone: "",
     concerns: "",
     preferredTime: "",
-    counselingType: "individual",
-    environmentalInterest: "low",
+    counselingType: "",
+    environmentalInterest: "",
     additionalInfo: "",
   });
 
@@ -71,8 +77,8 @@ const GetInTouch: React.FC = () => {
         parentPhone: "",
         concerns: "",
         preferredTime: "",
-        counselingType: "individual",
-        environmentalInterest: "low",
+        counselingType: "",
+        environmentalInterest: "",
         additionalInfo: "",
       });
     } catch (error) {
@@ -84,17 +90,33 @@ const GetInTouch: React.FC = () => {
   };
 
   return (
-  <>
-    <div className="h-16 sm:h-20"></div>
-      <div className="min-h-screen bg-gradient-to-b from-[#0e5457] to-[#006064] py-8 sm:py-16 px-6 sm:px-8">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-6 sm:mb-12">
-            <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2 sm:mb-3">Get in Touch</h1>
-            <p className="text-[#E0F2F1] text-sm sm:text-lg">
+    <div className="min-h-screen bg-[#0e5457]">
+      {/* Hero Section */}
+      <div className="relative w-full h-[50vh]">
+        <div className="absolute inset-0">
+          {/* Updated gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-[#0e5457]/50 to-[#0e5457]"></div>
+        </div>
+        <div className="relative max-w-4xl mx-auto px-6 sm:px-8 h-full flex items-center justify-center pt-20">
+          <div className="text-center">
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold text-[#F8F7BE] mb-4 drop-shadow-lg ${ubuntu.className}`}>
+              Get in Touch
+            </h2>
+            <p className={`text-white/90 text-lg sm:text-xl ${nunito.className}`}>
               Take the first step towards a brighter future
             </p>
           </div>
+        </div>
+      </div>
 
+      {/* Form Section */}
+      <div className="max-w-3xl mx-auto px-6 sm:px-8 py-12 sm:py-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-[#E0F2F1]/10">
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               {/* Student Information */}
@@ -109,7 +131,7 @@ const GetInTouch: React.FC = () => {
                       value={formData.studentName}
                       onChange={handleChange}
                       required
-                      className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-white/5 border border-[#E0F2F1]/20 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#E0F2F1] text-xs sm:text-sm"
+                      className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-white/5 border border-[#F8F7BE]/40 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#F8F7BE] text-xs sm:text-sm transition-colors duration-300"
                       placeholder="Enter student's name"
                     />
                   </div>
@@ -127,7 +149,7 @@ const GetInTouch: React.FC = () => {
                       required
                       min="5"
                       max="18"
-                      className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-white/5 border border-[#E0F2F1]/20 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#E0F2F1] text-xs sm:text-sm"
+                      className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-white/5 border border-[#F8F7BE]/40 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#F8F7BE] text-xs sm:text-sm transition-colors duration-300"
                       placeholder="Enter age"
                     />
                   </div>
@@ -143,7 +165,7 @@ const GetInTouch: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-white/5 border border-[#E0F2F1]/20 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#E0F2F1] text-xs sm:text-sm"
+                      className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-white/5 border border-[#F8F7BE]/40 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#F8F7BE] text-xs sm:text-sm transition-colors duration-300"
                       placeholder="Enter email"
                     />
                   </div>
@@ -159,7 +181,7 @@ const GetInTouch: React.FC = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-white/5 border border-[#E0F2F1]/20 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#E0F2F1] text-xs sm:text-sm"
+                      className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-white/5 border border-[#F8F7BE]/40 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#F8F7BE] text-xs sm:text-sm transition-colors duration-300"
                       placeholder="Enter phone number"
                     />
                   </div>
@@ -175,7 +197,7 @@ const GetInTouch: React.FC = () => {
                       value={formData.grade}
                       onChange={handleChange}
                       required
-                      className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-white/5 border border-[#E0F2F1]/20 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#E0F2F1] text-xs sm:text-sm"
+                      className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-white/5 border border-[#F8F7BE]/40 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#F8F7BE] text-xs sm:text-sm transition-colors duration-300"
                       placeholder="Enter current grade"
                     />
                   </div>
@@ -188,8 +210,9 @@ const GetInTouch: React.FC = () => {
                     value={formData.counselingType}
                     onChange={handleChange}
                     required
-                    className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#E0F2F1]/20 rounded-lg text-white focus:outline-none focus:border-[#E0F2F1] text-xs sm:text-sm"
+                    className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#F8F7BE]/40 rounded-lg text-white focus:outline-none focus:border-[#F8F7BE] text-xs sm:text-sm transition-colors duration-300"
                   >
+                    <option value="" className="bg-[#0e5457] text-white">Select counseling type</option>
                     <option className="bg-[#0e5457] text-white" value="individual">Individual Counseling</option>
                     <option className="bg-[#0e5457] text-white" value="group">Group Counseling</option>
                     <option className="bg-[#0e5457] text-white" value="family">Family Counseling</option>
@@ -208,7 +231,7 @@ const GetInTouch: React.FC = () => {
                     value={formData.parentName}
                     onChange={handleChange}
                     required
-                    className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#E0F2F1]/20 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#E0F2F1] text-xs sm:text-sm"
+                    className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#F8F7BE]/40 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#F8F7BE] text-xs sm:text-sm transition-colors duration-300"
                     placeholder="Enter parent/guardian name"
                   />
                 </div>
@@ -221,7 +244,7 @@ const GetInTouch: React.FC = () => {
                     value={formData.parentPhone}
                     onChange={handleChange}
                     required
-                    className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#E0F2F1]/20 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#E0F2F1] text-xs sm:text-sm"
+                    className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#F8F7BE]/40 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#F8F7BE] text-xs sm:text-sm transition-colors duration-300"
                     placeholder="Enter parent/guardian phone"
                   />
                 </div>
@@ -236,7 +259,7 @@ const GetInTouch: React.FC = () => {
                   onChange={handleChange}
                   required
                   rows={3}
-                  className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#E0F2F1]/20 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#E0F2F1] text-xs sm:text-sm"
+                  className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#F8F7BE]/40 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#F8F7BE] text-xs sm:text-sm transition-colors duration-300"
                   placeholder="Please describe any concerns or specific areas you'd like to address"
                 />
               </div>
@@ -248,8 +271,9 @@ const GetInTouch: React.FC = () => {
                   value={formData.environmentalInterest}
                   onChange={handleChange}
                   required
-                  className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#E0F2F1]/20 rounded-lg text-white focus:outline-none focus:border-[#E0F2F1] text-xs sm:text-sm"
+                  className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#F8F7BE]/40 rounded-lg text-white focus:outline-none focus:border-[#F8F7BE] text-xs sm:text-sm transition-colors duration-300"
                 >
+                  <option value="" className="bg-[#0e5457] text-white">Select interest level</option>
                   <option className="bg-[#0e5457] text-white" value="low">Low</option>
                   <option className="bg-[#0e5457] text-white" value="medium">Medium</option>
                   <option className="bg-[#0e5457] text-white" value="high">High</option>
@@ -264,7 +288,7 @@ const GetInTouch: React.FC = () => {
                   value={formData.preferredTime}
                   onChange={handleChange}
                   required
-                  className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#E0F2F1]/20 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#E0F2F1] text-xs sm:text-sm"
+                  className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#F8F7BE]/40 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#F8F7BE] text-xs sm:text-sm transition-colors duration-300"
                   placeholder="e.g., After school, Weekends"
                 />
               </div>
@@ -276,7 +300,7 @@ const GetInTouch: React.FC = () => {
                   value={formData.additionalInfo}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#E0F2F1]/20 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#E0F2F1] text-xs sm:text-sm"
+                  className="w-full pl-3 sm:pl-4 py-2 sm:py-2.5 bg-white/5 border border-[#F8F7BE]/40 rounded-lg text-white placeholder-[#E0F2F1]/50 focus:outline-none focus:border-[#F8F7BE] text-xs sm:text-sm transition-colors duration-300"
                   placeholder="Any additional information you'd like to share"
                 />
               </div>
@@ -286,7 +310,7 @@ const GetInTouch: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-6 sm:px-8 py-2.5 sm:py-3 bg-[#E0F2F1] text-[#0e5457] rounded-lg font-semibold hover:bg-[#E0F2F1]/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2 text-sm sm:text-base"
+                  className="px-6 sm:px-8 py-2.5 sm:py-3 bg-[#E0F2F1] text-[#0e5457] rounded-lg font-semibold hover:bg-[#E0F2F1]/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                 >
                   {isSubmitting ? (
                     <>
@@ -294,10 +318,7 @@ const GetInTouch: React.FC = () => {
                       <span>Submitting...</span>
                     </>
                   ) : (
-                    <>
-                      <FaLeaf className="text-[#0e5457] text-sm sm:text-base" />
-                      <span>Submit Request</span>
-                    </>
+                    "Submit Request"
                   )}
                 </button>
               </div>
@@ -315,9 +336,16 @@ const GetInTouch: React.FC = () => {
               )}
             </form>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </>
+
+      {/* Decorative Lines */}
+      <div className="relative">
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-40"></div>
+        <div className="w-1/3 h-px bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-30 mx-auto -mt-[1px]"></div>
+        <div className="w-1/6 h-px bg-gradient-to-r from-transparent via-[#F8F7BE] to-transparent opacity-20 mx-auto -mt-[1px]"></div>
+      </div>
+    </div>
   );
 };
 

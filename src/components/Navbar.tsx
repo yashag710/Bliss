@@ -3,23 +3,51 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cantarell } from "next/font/google";
-import { useState } from "react";
+import { Cantarell, Cabin } from "next/font/google";
+import { useEffect, useState } from "react";
+import { usePathname, useRouter } from 'next/navigation';
 
 // Import font with weights
 const cantarell = Cantarell({ subsets: ["latin"], weight: ["400", "700"] });
+const cabin = Cabin({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700']
+});
 
 const Navbar: React.FC = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Add scroll event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      const frontHeight = window.innerHeight; // Height of Front component
+      const scrollPosition = window.scrollY;
+      setScrolled(scrollPosition > frontHeight - 80); // 80 is navbar height
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleContactClick = (e: React.MouseEvent, sectionId: string) => {
     e.preventDefault();
-    const section = document.getElementById(sectionId);
-    if (section) {
-      const navbarHeight = 80;
-      const sectionPosition = section.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: sectionPosition - navbarHeight, behavior: "smooth" });
+    
+    // If we're on the homepage, scroll to contact section
+    if (pathname === '/') {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const navbarHeight = 80;
+        const sectionPosition = section.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: sectionPosition - navbarHeight, behavior: "smooth" });
+      }
+    } else {
+      // If we're on any other page, navigate to homepage + contact section
+      router.push('/#contact');
     }
+    
     setIsMenuOpen(false); // Close mobile menu after clicking
   };
 
@@ -33,7 +61,11 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
-      <nav className="bg-[#0e5457] text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
+      <nav className={`transition-all duration-300 ${
+        scrolled 
+          ? 'bg-[#0e5457]/80 backdrop-blur-md text-white shadow-lg'
+          : 'bg-transparent text-white'
+      }`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             {/* Logo Section */}
@@ -50,7 +82,7 @@ const Navbar: React.FC = () => {
                     src="/images/bliss_logo.png"
                     alt="Logo"
                     fill
-                    className="object-contain"
+                    className="object-contain drop-shadow-lg"
                     priority
                   />
                 </div>
@@ -58,7 +90,7 @@ const Navbar: React.FC = () => {
             </Link>
 
             {/* Desktop Navigation Links */}
-            <ul className={`hidden md:flex space-x-8 font-medium ${cantarell.className}`}>
+            <ul className={`hidden md:flex space-x-8 font-medium ${cabin.className}`}>
               {navItems.map((item, index) => (
                 <motion.li 
                   key={index}
@@ -71,18 +103,26 @@ const Navbar: React.FC = () => {
                     <a 
                       href={item.href} 
                       onClick={(e) => handleContactClick(e, item.href.slice(1))}
-                      className="cursor-pointer text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300"
+                      className={`cursor-pointer transition-colors duration-300 drop-shadow-lg ${
+                        scrolled 
+                          ? 'text-white/90 hover:text-white' 
+                          : 'text-white/90 hover:text-white'
+                      }`}
                     >
                       {item.label}
                     </a>
                   ) : (
                     <Link href={item.href}>
-                      <span className="cursor-pointer text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300">
+                      <span className={`cursor-pointer transition-colors duration-300 drop-shadow-lg ${
+                        scrolled 
+                          ? 'text-white/90 hover:text-white' 
+                          : 'text-white/90 hover:text-white'
+                      }`}>
                         {item.label}
                       </span>
                     </Link>
                   )}
-                  <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#F8F7BE] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
                 </motion.li>
               ))}
             </ul>
@@ -90,7 +130,11 @@ const Navbar: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300"
+              className={`md:hidden transition-colors duration-300 ${
+                scrolled 
+                  ? 'text-white/90 hover:text-white' 
+                  : 'text-white/90 hover:text-white'
+              }`}
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -105,7 +149,7 @@ const Navbar: React.FC = () => {
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
-                className="md:hidden"
+                className="md:hidden bg-black/80 backdrop-blur-sm rounded-lg mt-2"
               >
                 <div className="py-4 space-y-4">
                   {navItems.map((item, index) => (
