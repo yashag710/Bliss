@@ -63,11 +63,11 @@ const Navbar: React.FC = () => {
     <div className="fixed top-0 left-0 right-0 z-50">
       <nav className={`transition-all duration-300 ${
         scrolled 
-          ? 'bg-[#0e5457]/80 backdrop-blur-md text-white shadow-lg'
+          ? 'bg-[#0e5457]/90 backdrop-blur-md text-white shadow-lg'
           : 'bg-transparent text-white'
       }`}>
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Logo Section */}
             <Link href="/" className="flex items-center cursor-pointer">
               <motion.div 
@@ -77,7 +77,7 @@ const Navbar: React.FC = () => {
                 whileHover={{ scale: 1.1, rotate: 2 }}
                 whileTap={{ scale: 0.9, rotate: -2 }}
               >
-                <div className="relative w-16 h-16 sm:w-20 sm:h-20">
+                <div className="relative w-12 h-12 sm:w-16 sm:h-16">
                   <Image
                     src="/images/bliss_logo.png"
                     alt="Logo"
@@ -130,14 +130,14 @@ const Navbar: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`md:hidden transition-colors duration-300 ${
+              className={`md:hidden p-2 transition-colors duration-300 ${
                 scrolled 
                   ? 'text-white/90 hover:text-white' 
                   : 'text-white/90 hover:text-white'
               }`}
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              {isMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
             </button>
           </div>
 
@@ -145,26 +145,29 @@ const Navbar: React.FC = () => {
           <AnimatePresence>
             {isMenuOpen && (
               <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="md:hidden bg-black/80 backdrop-blur-sm rounded-lg mt-2"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute left-0 right-0 top-16 sm:top-20 md:hidden bg-[#0e5457]/95 backdrop-blur-md shadow-xl border-t border-white/10"
               >
-                <div className="py-4 space-y-4">
+                <div className="py-2 px-4">
                   {navItems.map((item, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="border-b border-[#E0F2F1]/10 pb-4 last:border-0"
+                      className="border-b border-white/10 last:border-0"
                     >
                       {item.isAnchor ? (
                         <a
                           href={item.href}
-                          onClick={(e) => handleContactClick(e, item.href.slice(1))}
-                          className="block text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300 py-2"
+                          onClick={(e) => {
+                            handleContactClick(e, item.href.slice(1));
+                            setIsMenuOpen(false);
+                          }}
+                          className="block text-white hover:text-[#F8F7BE] transition-colors duration-300 py-3 text-sm"
                         >
                           {item.label}
                         </a>
@@ -172,7 +175,7 @@ const Navbar: React.FC = () => {
                         <Link
                           href={item.href}
                           onClick={() => setIsMenuOpen(false)}
-                          className="block text-[#E0F2F1] hover:text-[#F8F7BE] transition-colors duration-300 py-2"
+                          className="block text-white hover:text-[#F8F7BE] transition-colors duration-300 py-3 text-sm"
                         >
                           {item.label}
                         </Link>
